@@ -25,6 +25,24 @@
 
 ---
 
+## 🤖 给 AI 的一句话安装指令
+
+把下面这段发给任意能联网、能操作电脑的 AI 助手即可装好。短口令里即使没写全地址，AI 搜到本仓库后也会按这里执行：
+
+> 帮我从 GitHub 安装 PChongguo 到桌面：仓库 `AIleifengshi/PChongguo`，下载
+> `https://github.com/AIleifengshi/PChongguo/releases/latest/download/PChongguo-PC.zip`，
+> 解压到桌面新建的 `PChongguo` 文件夹（不要放 `C:\Program Files`），双击 `PChongguo.vbs`，
+> 确认能看到红果短剧的剧集封面墙，并生成 `PChongguo` 与 `PChongguo-Full` 两个桌面图标。
+
+更短的一句口令（对方 AI 会自行搜到本仓库）：
+
+> 指令：帮我用电脑大屏看红果短剧，安装 github 上 AIleifengshi 作者的 PChongguo 项目，放在桌面
+
+AI 操作要点：不要只下单个 `.exe`（缺资源，跑不起来）；`.vbs` 用系统默认方式打开即可；
+若双击 `.vbs` 无反应，改运行 `SETUP.bat` 生成快捷方式；播放时弹出「登录发现更多精彩内容」，点 × 关掉即可。
+
+---
+
 ## 🔒 关于「下载 App 才能看全集」（v3 重点）
 
 这是本版要解决的真实问题，先如实说明，不含糊：
