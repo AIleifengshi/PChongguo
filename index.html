@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI类风湿 · 红果短剧推广助手</title>
+<style>
+  :root{
+    --bg:#0e1726; --panel:#16223a; --panel2:#1d2c49; --line:#2a3b5e;
+    --txt:#e8eefb; --muted:#9fb0cf; --accent:#2dd4bf; --accent2:#7c83ff;
+    --warn:#ffb454; --ok:#34d399; --ios:#5ac8fa; --and:#3ddc84;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;
+    background:radial-gradient(1200px 600px at 80% -10%,#1c2c4d 0%,var(--bg) 55%);
+    color:var(--txt);min-height:100vh;padding:24px}
+  .app{max-width:900px;margin:0 auto}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .logo{width:46px;height:46px;border-radius:14px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#0e1726}
+  .brand h1{font-size:20px;letter-spacing:.5px}
+  .brand p{font-size:12px;color:var(--muted);margin-top:2px}
+  .tabs{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+  .tab{padding:9px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line);
+    color:var(--muted);cursor:pointer;font-size:13px;transition:.2s}
+  .tab.active{background:var(--panel2);color:var(--txt);border-color:var(--accent)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
+  label{display:block;font-size:13px;color:var(--muted);margin:14px 0 6px}
+  input{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);
+    background:var(--bg);color:var(--txt);font-size:14px;outline:none}
+  input:focus{border-color:var(--accent)}
+  .btn{padding:11px 18px;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;transition:.2s}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0e1726}
+  .btn-ghost{background:var(--panel2);color:var(--txt);border:1px solid var(--line)}
+  .btn-sm{padding:7px 12px;font-size:12px}
+  .btn:hover{filter:brightness(1.08)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .cta{display:block;width:100%;text-align:center;padding:18px;border-radius:14px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0e1726;
+    font-size:18px;font-weight:800;text-decoration:none;margin:8px 0 4px}
+  .cta:hover{filter:brightness(1.06)}
+  .pill{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--bg);
+    border:1px solid var(--line);font-size:13px;color:var(--accent);margin:6px 6px 0 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .qr{background:#fff;border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:center;min-height:160px}
+  .qr img{max-width:160px}
+  .note{font-size:12px;color:var(--muted);line-height:1.7;margin-top:8px}
+  .disc{font-size:11px;color:#6f81a3;margin-top:18px;text-align:center;line-height:1.6}
+  .save-ok{color:var(--ok);font-size:13px;margin-left:10px;opacity:0;transition:.3s}
+  .save-ok.show{opacity:1}
+  h3{font-size:15px;margin-bottom:8px;color:var(--accent)}
+  ul{margin:6px 0 0 18px;font-size:13px;color:var(--muted);line-height:1.8}
+  .hidden{display:none}
+  .earn-row{display:flex;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .earn-row .d{color:var(--muted);width:96px}
+  .earn-row .a{color:var(--ok);font-weight:700;width:90px}
+  .earn-row .n{flex:1;color:var(--txt)}
+  .earn-row .x{color:#ff6b6b;cursor:pointer;padding:0 6px}
+  .total{font-size:16px;margin-top:12px;color:var(--accent)}
+  textarea{width:100%;min-height:70px;padding:11px 13px;border-radius:10px;border:1px solid var(--line);
+    background:var(--bg);color:var(--txt);font-size:13px;outline:none;resize:vertical}
+  .tpl{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px;font-size:13px;color:var(--txt);white-space:pre-wrap;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">AI</div>
+    <div class="brand">
+      <h1>AI类风湿 · 红果短剧推广助手</h1>
+      <p>独立品牌 · 原创外观 · 接入你本人的官方推广链接赚佣金</p>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="ios">iOS 推广</div>
+    <div class="tab" data-tab="and">安卓推广</div>
+    <div class="tab" data-tab="earn">收益记录</div>
+    <div class="tab" data-tab="douyin">抖音推广</div>
+    <div class="tab" data-tab="set">设置</div>
+    <div class="tab" data-tab="help">说明</div>
+  </div>
+
+  <!-- iOS -->
+  <section id="ios">
+    <div class="card">
+      <h3>我的 iOS 推广入口</h3>
+      <p class="note">点击下方按钮，将通过<b>你本人设置的官方推广链接</b>打开红果（iOS 渠道）。归因与佣金以红果/任推邦官方后台为准。</p>
+      <a id="ctaIos" class="cta" href="#" target="_blank" rel="noopener">▶ 去红果看剧（iOS · 走我的推广链接）</a>
+      <div class="row">
+        <button class="btn btn-ghost btn-sm" id="copyIos">复制 iOS 链接</button>
+        <button class="btn btn-ghost btn-sm" id="copyKey">复制推广关键词</button>
+      </div>
+      <div id="attrIos"></div>
+    </div>
+    <div class="card">
+      <div class="grid2">
+        <div>
+          <h3>iOS 推广二维码</h3>
+          <div class="qr" id="qrIos"><span class="note">先在「设置」填写推广链接</span></div>
+          <p class="note">把二维码发到微信群 / 朋友圈，扫码即走你的链接。</p>
+        </div>
+        <div>
+          <h3>我的推广关键词</h3>
+          <div id="keyBox" class="note">未设置。去「设置」填写你在官方后台申请的专属关键词。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 安卓 -->
+  <section id="and" class="hidden">
+    <div class="card">
+      <h3>我的安卓推广入口</h3>
+      <p class="note">点击下方按钮，将通过<b>你本人的安卓官方推广链接</b>打开红果（安卓渠道）。</p>
+      <a id="ctaAnd" class="cta" href="#" target="_blank" rel="noopener">▶ 去红果看剧（安卓 · 走我的推广链接）</a>
+      <div class="row">
+        <button class="btn btn-ghost btn-sm" id="copyAnd">复制安卓链接</button>
+      </div>
+      <div id="attrAnd"></div>
+      <p class="note" style="color:var(--warn)">⚠️ 安卓渠道参数 <b>qd</b> 请务必与你在任推邦后台生成的「安卓推广链接」逐项核对一致；若不一致，请以官方安卓链接手动替换本处设置。</p>
+    </div>
+    <div class="card">
+      <h3>安卓推广二维码</h3>
+      <div class="qr" id="qrAnd"><span class="note">先在「设置」填写安卓推广链接</span></div>
+    </div>
+  </section>
+
+  <!-- 收益 -->
+  <section id="earn" class="hidden">
+    <div class="card">
+      <h3>本地收益记录本</h3>
+      <label>日期</label>
+      <input id="eDate" type="date">
+      <label>金额（元）</label>
+      <input id="eAmt" type="number" step="0.01" placeholder="例如 1.16">
+      <label>备注（可选）</label>
+      <input id="eNote" placeholder="例如 微信群分享 3 人注册">
+      <div class="row">
+        <button class="btn btn-primary" id="addEarn">添加记录</button>
+        <button class="btn btn-ghost btn-sm" id="clearEarn">清空全部</button>
+      </div>
+      <div id="earnList"></div>
+      <div class="total" id="earnTotal">累计收益：¥0.00</div>
+      <p class="note">数据仅存本机浏览器（localStorage），不上传任何服务器；正式结算请以任推邦官方后台为准。</p>
+    </div>
+  </section>
+
+  <!-- 抖音 -->
+  <section id="douyin" class="hidden">
+    <div class="card">
+      <h3>抖音推广话术（一键复制）</h3>
+      <p class="note">把下方模板复制进你的抖音视频<b>标题/评论区/小黄车挂载</b>，引导用户经你的链接看剧。模板中的链接与关键词会自动取自「设置」。</p>
+      <div id="tpl1" class="tpl"></div>
+      <div class="row"><button class="btn btn-ghost btn-sm" id="copyTpl1">复制话术一（关键词版）</button></div>
+      <div id="tpl2" class="tpl"></div>
+      <div class="row"><button class="btn btn-ghost btn-sm" id="copyTpl2">复制话术二（链接版）</button></div>
+    </div>
+    <div class="card">
+      <h3>抖音推广要点</h3>
+      <ul>
+        <li>剪 15–30 秒高能切片，开头即高潮，结尾留钩子，引导「左下角/评论区看全集」。</li>
+        <li>发布时挂载红果小程序或填入你的<b>专属关键词</b>，用户搜索即归因到你。</li>
+        <li>按任推邦规则<b>回填发文链接/素材凭证</b>，否则可能不算有效单。</li>
+        <li>客观陈述、不夸大收益；遵守抖音社区规范与平台推广政策。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 设置 -->
+  <section id="set" class="hidden">
+    <div class="card">
+      <h3>接入你本人的推广资质</h3>
+      <label>iOS 官方推广链接（任推邦后台生成，含你的 invite_code）</label>
+      <input id="linkIos" placeholder="https://tg.bd.cn/#/...invite_code=你的码">
+      <label>安卓官方推广链接（任推邦后台生成，渠道参数请核对）</label>
+      <input id="linkAnd" placeholder="安卓推广链接（qd 参数以官方为准）">
+      <label>推广关键词（在官方后台申请的专属词，用于搜索归因）</label>
+      <input id="keyInput" placeholder="例如：你的专属短剧关键词">
+      <div class="row">
+        <button class="btn btn-primary" id="saveBtn">保存</button>
+        <span class="save-ok" id="saveOk">已保存 ✓</span>
+      </div>
+      <p class="note">数据仅保存在本机浏览器，不会上传任何服务器。请只填写<b>你本人</b>的官方推广链接。</p>
+    </div>
+  </section>
+
+  <!-- 说明 -->
+  <section id="help" class="hidden">
+    <div class="card">
+      <h3>佣金从哪来（原理）</h3>
+      <ul>
+        <li>红果靠广告变现（IAA），推广者拿 <b>CPA 拉新</b>（约 9.5 元/新用户）+ <b>CPS 广告分成</b>（10%–30% 广告流水）。</li>
+        <li>你注册成为官方推广员后，拿到<b>专属链接/二维码/关键词</b>（含你的 ID）。</li>
+        <li>用户经你的链接注册/看广告/付费，官方后台自动归因并结算佣金到你的账户。</li>
+        <li>本程序只是<b>推广中枢</b>：原创外观、走你的官方链接、便于分享与记录。<b>佣金不在程序本身</b>，在红果/任推邦官方后台。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>合规边界（重要）</h3>
+      <ul>
+        <li>必须使用<b>你本人</b>在官方推广计划申请的链接，不得内置他人 ID、不得冒充红果品牌。</li>
+        <li>不得抓取/绕过红果官方客户端与内容分发；本程序仅通过官方链接跳转。</li>
+        <li>真实数据与佣金请以红果/任推邦官方推广后台为准，本程序不承诺任何收益。</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="disc">本工具为推广引流辅助，不构成任何收益承诺；佣金结算与归因以红果/任推邦官方平台规则为准。<br>© AI类风湿 · 独立品牌 · 原创界面</p>
+</div>
+
+<script>
+  const $ = s => document.querySelector(s);
+  const linkIosKey='jtg_link_ios', linkAndKey='jtg_link_and', keyKey='jtg_keyword', earnKey='jtg_earn';
+  const DEFAULT_IOS='https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_ios';
+  const DEFAULT_AND='https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_android';
+
+  function load(){
+    if(!localStorage.getItem(linkIosKey)) localStorage.setItem(linkIosKey,DEFAULT_IOS);
+    if(!localStorage.getItem(linkAndKey)) localStorage.setItem(linkAndKey,DEFAULT_AND);
+    $('#linkIos').value=localStorage.getItem(linkIosKey)||'';
+    $('#linkAnd').value=localStorage.getItem(linkAndKey)||'';
+    $('#keyInput').value=localStorage.getItem(keyKey)||'';
+    $('#eDate').value=new Date().toISOString().slice(0,10);
+    render(); renderEarn();
+  }
+  function save(){
+    localStorage.setItem(linkIosKey,$('#linkIos').value.trim());
+    localStorage.setItem(linkAndKey,$('#linkAnd').value.trim());
+    localStorage.setItem(keyKey,$('#keyInput').value.trim());
+    $('#saveOk').classList.add('show'); setTimeout(()=>$('#saveOk').classList.remove('show'),1500);
+    render(); renderEarn();
+  }
+  function parseAttr(link){
+    try{ const u=new URL(link);
+      return {host:u.hostname, ic:u.searchParams.get('invite_code')||'', appId:u.searchParams.get('appId')||''};
+    }catch(e){ return {host:'',ic:'',appId:''}; }
+  }
+  function attrHTML(link){
+    if(!link) return '';
+    const a=parseAttr(link);
+    const known=(a.host||'').includes('tg.bd.cn')||(a.host||'').includes('fanqieopen.com')||(a.host||'').includes('xingtui')||(a.host||'').includes('rightbao');
+    let h='<div style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.9">';
+    h+=`推广平台：<b style="color:var(--txt)">${a.host||'未知'}</b>${known?' ✅ 已知授权平台':''}<br>`;
+    if(a.appId) h+=`任务ID：<b style="color:var(--txt)">${a.appId}</b><br>`;
+    if(a.ic) h+=`归因邀请码：<b style="color:var(--accent)">${a.ic}</b> <span style="color:var(--warn)">（请确认这是你本人任推邦账号的邀请码，否则佣金归他人）</span>`;
+    else h+='<span style="color:var(--warn)">⚠️ 链接不含邀请码/归因参数，佣金可能无法归属到你账户</span>';
+    return h+'</div>';
+  }
+  function setCta(id,link){ const e=$(id); if(link){ e.href=link; e.style.opacity=1; } else { e.href='#'; e.style.opacity=.5; } }
+  function qr(id,link){ const e=$(id);
+    if(link) e.innerHTML=`<img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(link)}" alt="qr" onerror="this.parentNode.innerHTML='<span class=note>二维码需联网生成，可直接复制链接</span>'">`;
+    else e.innerHTML=`<span class="note">先在「设置」填写推广链接</span>`;
+  }
+  function render(){
+    const ios=localStorage.getItem(linkIosKey)||'', and=localStorage.getItem(linkAndKey)||'', key=localStorage.getItem(keyKey)||'';
+    setCta('#ctaIos',ios); setCta('#ctaAnd',and);
+    $('#attrIos').innerHTML=attrHTML(ios); $('#attrAnd').innerHTML=attrHTML(and);
+    qr('#qrIos',ios); qr('#qrAnd',and);
+    $('#keyBox').innerHTML = key ? `<span class="pill">${key}</span>` : `<span class="note">未设置。</span>`;
+    // 抖音模板
+    const kw = key ? `在红果短剧搜索【${key}】即可免费看全集，不用等更新！` : '在红果短剧搜我的专属关键词，免费看全集！';
+    $('#tpl1').textContent = `这部剧反转太炸了，免费看到爽🔥\n${kw}\n#红果短剧 #一口气看完 #追剧推荐`;
+    $('#tpl2').textContent = `想看全集点这里👇 经我的推广链接免费看：\n${ios}\n#红果短剧 #短剧推荐`;
+  }
+  function renderEarn(){
+    let list=[]; try{ list=JSON.parse(localStorage.getItem(earnKey)||'[]'); }catch(e){}
+    const box=$('#earnList'); box.innerHTML='';
+    let total=0;
+    list.slice().reverse().forEach((it,idx)=>{
+      total+=parseFloat(it.amt)||0;
+      const realIdx=list.length-1-idx;
+      const row=document.createElement('div'); row.className='earn-row';
+      row.innerHTML=`<span class="d">${it.date}</span><span class="a">¥${(parseFloat(it.amt)||0).toFixed(2)}</span><span class="n">${it.note||''}</span><span class="x" data-i="${realIdx}">✕</span>`;
+      box.appendChild(row);
+    });
+    $('#earnTotal').textContent='累计收益：¥'+total.toFixed(2);
+    box.querySelectorAll('.x').forEach(x=>x.onclick=()=>{ const i=+x.dataset.i; let l=JSON.parse(localStorage.getItem(earnKey)||'[]'); l.splice(i,1); localStorage.setItem(earnKey,JSON.stringify(l)); renderEarn(); });
+  }
+  function addEarn(){
+    const date=$('#eDate').value, amt=$('#eAmt').value, note=$('#eNote').value.trim();
+    if(!amt){ alert('请填写金额'); return; }
+    let l=[]; try{ l=JSON.parse(localStorage.getItem(earnKey)||'[]'); }catch(e){}
+    l.push({date:date||new Date().toISOString().slice(0,10), amt:amt, note:note});
+    localStorage.setItem(earnKey,JSON.stringify(l));
+    $('#eAmt').value=''; $('#eNote').value='';
+    renderEarn();
+  }
+  function copy(t){ if(!t){alert('请先在设置填写');return;} navigator.clipboard.writeText(t).then(()=>alert('已复制：'+t.slice(0,60)+(t.length>60?'…':''))); }
+
+  $('#saveBtn').onclick=save;
+  $('#addEarn').onclick=addEarn;
+  $('#clearEarn').onclick=()=>{ if(confirm('确定清空全部收益记录？')){ localStorage.removeItem(earnKey); renderEarn(); } };
+  $('#copyIos').onclick=()=>copy(localStorage.getItem(linkIosKey));
+  $('#copyAnd').onclick=()=>copy(localStorage.getItem(linkAndKey));
+  $('#copyKey').onclick=()=>copy(localStorage.getItem(keyKey));
+  $('#copyTpl1').onclick=()=>copy($('#tpl1').textContent);
+  $('#copyTpl2').onclick=()=>copy($('#tpl2').textContent);
+  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    ['ios','and','earn','douyin','set','help'].forEach(id=>$('#'+id).classList.toggle('hidden',id!==t.dataset.tab));
+  });
+  load();
+</script>
+</body>
+</html>

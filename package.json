@@ -1,0 +1,13 @@
+{
+  "name": "ai-lff-hongguo-promo",
+  "version": "1.0.0",
+  "description": "AI类风湿 · 红果短剧推广助手 — 独立品牌推广中枢（原创外观，接入本人官方推广链接）",
+  "private": true,
+  "scripts": {
+    "build": "nativefier --name \"AILFF\" --platform windows --arch x64 --single-instance index.html dist"
+  },
+  "devDependencies": {
+    "nativefier": "52.0.0"
+  },
+  "license": "MIT"
+}
