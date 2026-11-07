@@ -26,9 +26,9 @@
 
 ## 🚀 三步安装
 
-1. 到 [Releases](https://github.com/AIleifengshi/PChongguo/releases) 下载 `PChongguo.exe`（Windows 64 位）。
-2. 双击运行，无需安装、无需注册。
-3. 点击「打开红果短剧」，大屏追剧开始。
+1. 到 [Releases](https://github.com/AIleifengshi/PChongguo/releases) 下载 `PCHongguo-win32-x64.zip`（Windows 64 位）。
+2. 解压到任意文件夹（建议 D 盘等非系统盘，不要放在 `C://Program Files`）。
+3. 双击里面的 `PCHongguo.exe` 打开，点击「打开红果短剧」，大屏追剧开始。
 
 ## 💡 使用方式
 

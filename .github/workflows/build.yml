@@ -34,16 +34,19 @@ jobs:
       - name: Rename to brand name
         run: node rename.js
 
+      - name: Package as ZIP
+        run: Compress-Archive -Path "dist/PCHongguo-win32-x64" -DestinationPath "PCHongguo-win32-x64.zip" -Force
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: AI类风湿-win32-x64
-          path: dist/**
+          name: PCHongguo-win32-x64
+          path: PCHongguo-win32-x64.zip
 
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/PCHongguo-win32-x64/PCHongguo.exe
+          files: PCHongguo-win32-x64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
