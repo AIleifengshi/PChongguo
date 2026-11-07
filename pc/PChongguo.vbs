@@ -23,17 +23,15 @@ If Not fso.FileExists(lnkPath) Then
     lnk.Save
 End If
 
-' One-time Desktop shortcut for the local 'watch full series' guide.
+' Channel-home shortcut. Rewritten every run so upgrades fix an older target.
 fullLnk = sh.SpecialFolders("Desktop") & "\PChongguo-Full.lnk"
-If fso.FileExists(appDir & "\fullwatch.html") Then
-    If Not fso.FileExists(fullLnk) Then
-        Set lnk2 = sh.CreateShortcut(fullLnk)
-        lnk2.TargetPath = appDir & "\fullwatch.html"
-        lnk2.WorkingDirectory = appDir
-        lnk2.IconLocation = appDir & "\PChongguo.ico,0"
-        lnk2.Description = "PChongguo - watch full series with my own QR"
-        lnk2.Save
-    End If
+If fso.FileExists(appDir & "\channels.html") Then
+    Set lnk2 = sh.CreateShortcut(fullLnk)
+    lnk2.TargetPath = appDir & "\channels.html"
+    lnk2.WorkingDirectory = appDir
+    lnk2.IconLocation = appDir & "\PChongguo.ico,0"
+    lnk2.Description = "PChongguo - channels and free full series guide"
+    lnk2.Save
 End If
 On Error Goto 0
 

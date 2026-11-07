@@ -43,8 +43,34 @@
 <body>
 <div class="wrap">
 
+  <a href="channels.html" style="display:inline-block;font-size:13px;color:var(--sub);text-decoration:none;margin-bottom:14px">← 返回频道首页</a>
+
   <h1>看到「下载 App 免费看全集」了？</h1>
   <p class="lead">这不是程序坏了，也不是会员墙，是红果官方的播放规则。下面是在电脑上继续看全集、同时让推广归因成立的完整路径 —— 请按顺序看，尤其是第一段实话。</p>
+
+  <div class="card" style="border-color:rgba(255,143,133,.45);background:rgba(255,143,133,.07)">
+    <h2 style="color:#ff8f85">先分清两个码 · 别扫错（重要）</h2>
+    <p>追剧窗口锁集弹窗里那张码，是<b>红果官网自己生成的</b>，不是你的推广码。它出现在 PChongguo 窗口里，只是因为本程序打开的就是官网页面。扫它 = 平台记为官网自然新增，<b>0 收益</b>。</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
+      <div style="border:1px solid var(--line);border-left:3px solid #ff8f85;border-radius:10px;padding:12px 14px;background:#1b161a">
+        <h3 style="margin:0 0 8px">官网锁集码 · 别扫</h3>
+        <p style="margin:4px 0;font-size:13px"><b>位置：</b>追剧窗口「扫码进入 App 端」弹窗</p>
+        <p style="margin:4px 0;font-size:13px"><b>外观：</b>纯黑白密集方块，中间没有 logo</p>
+        <p style="margin:4px 0;font-size:13px"><b>解出来：</b><code>applink.novelquickapp.com</code></p>
+        <p style="margin:4px 0;font-size:13px"><b>参数：</b>只有剧集 / vid / web_id，<code>launch_from=ug_seo_page</code>，无任何推广参数</p>
+        <p style="margin:10px 0 0;font-size:13px;font-weight:700;color:#ff8f85">结果：记为官网自然新增 → 0 收益</p>
+      </div>
+      <div style="border:1px solid var(--line);border-left:3px solid var(--ok);border-radius:10px;padding:12px 14px;background:#1b161a">
+        <h3 style="margin:0 0 8px">你自己的码 · 扫这张</h3>
+        <p style="margin:4px 0;font-size:13px"><b>位置：</b>本页第 1 步 / 分享给朋友.html</p>
+        <p style="margin:4px 0;font-size:13px"><b>外观：</b>中心带播放按钮 logo</p>
+        <p style="margin:4px 0;font-size:13px"><b>解出来：</b><code>kol.fanqieopen.com/landing/ground-promotion</code></p>
+        <p style="margin:4px 0;font-size:13px"><b>参数：</b>带 <code>promotion_code_id</code> / <code>kol_uid</code> / <code>invite_uid</code></p>
+        <p style="margin:10px 0 0;font-size:13px;font-weight:700;color:var(--ok)">结果：归因到你的达人账号 → 才可能有结算</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-bottom:0">下面第 1 步展示的就是<b>你自己的</b>那张 <code>mycode.png</code>；扫描前请确认中心有播放按钮 logo。</p>
+  </div>
 
   <!-- 0. 实话 -->
   <div class="card">

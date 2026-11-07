@@ -24,6 +24,7 @@ jobs:
             'pc/SETUP.bat',
             'pc/使用说明.txt',
             'pc/分享给朋友.html',
+            'pc/channels.html',
             'pc/fullwatch.html',
             'pc/mycode.png',
             'pc/promo-url.txt'
@@ -50,25 +51,29 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          name: "PChongguo v3 · 看全集引导版"
+          name: "PChongguo v3.1 · 频道版"
           body: |
-            ## PChongguo v3 · 电脑大屏追红果短剧 + 看全集引导
+            ## PChongguo v3.1 · 频道版
 
-            双击即用的独立追剧窗口，并内置**你自己的推广码**与「看全集」引导页。
+            双击即用的独立追剧窗口，新增**频道首页**与「免费看全集」入口，并内置你自己的推广码。
 
             ### 安装（约 10 秒）
             1. 下载 `PChongguo-PC.zip`
             2. 解压到桌面或 D 盘等普通目录（不要放 `C:\Program Files`）
             3. 双击 `PChongguo.vbs` → 剧集封面墙 → 点一部剧 → 点「播放正片」
-            4. 首次运行会在桌面生成两个图标：`PChongguo`（追剧）、`PChongguo-Full`（看全集引导）
+            4. 首次运行会在桌面生成两个图标：`PChongguo`（追剧）、`PChongguo-Full`（频道首页）
 
-            若双击 .vbs 无反应，可改用 `SETUP.bat`；引导页也可直接双击 `fullwatch.html`。
+            若双击 .vbs 无反应，可改用 `SETUP.bat`；也可直接双击 `channels.html` 或 `fullwatch.html`。
 
-            ### v3 更新
-            - 新增 `fullwatch.html`：讲清网页版为何第 6 集起锁、以及电脑上继续看全集的两条合规路径
-            - 新增 `mycode.png` / `promo-url.txt`：你自己的官方推广码（H 级纠错，带 logo 可扫）
-            - `分享给朋友.html` 改为主推自有码；归属未确认的历史链接降级标注，避免误给他人带量
-            - 使用说明 / README 补充收益口径、风控与抖音合规红线
+            ### v3.1 更新
+            - 新增 `channels.html` 频道首页：真人剧 / AI剧 / 漫剧 / 漫画 / 热播榜 / 官网首页 一键直达官网真实分类，每格标注「网页试看前 5 集 · 全集在 App」
+            - 频道首页含醒目的「免费看全集」入口，指向 `fullwatch.html` 的两条合规路径
+            - `fullwatch.html` 顶部新增「官网锁集码 vs 你自己的码」对比（位置 / 外观 / 链接 / 有无推广参数 / 结果），避免扫错码
+            - 第二个桌面快捷方式改指向频道首页；使用说明 / README 同步
+
+            ### 为什么没有做一个叫「免费」的频道
+            逐部实测：AI剧 / 漫剧 / 真人剧点「播放正片」视频正常加载，但点第 12 集后视频地址不变、不加载，播放区变「扫码进入App端，免费看全集」，选集 6–10 带锁，三部剧结果一字不差。官网 90 个分类链接中也没有 free 频道。
+            「高清完整版全集免费观看」是 SEO 标题模板，「全60集免费观看」是手机 App 内标签，官网侧栏写的是「App 免费高清看全集」—— 三处都指 App，不是网页版。做一个假的「免费」网页频道属于虚假宣传，本程序不做。
 
             ### 必须知道的事实
             - 官网网页版只是试看，网页端没有官方全集解锁入口，官方也没有 Windows 客户端
