@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PChongguo · 全集模式</title>
+<style>
+  :root{--bg:#171316;--card:#221c20;--line:#3a2f33;--txt:#f3ece9;--sub:#b5a6a9;--accent:#ff8a3c;--warn:#ffcf70;--ok:#7fd6a2;--bad:#ff8f85}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.8 "Microsoft YaHei",system-ui,sans-serif;padding:32px 18px 56px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-size:27px;margin:0 0 6px}
+  .lead{color:var(--sub);margin:0 0 22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-bottom:16px}
+  h2{font-size:17px;margin:0 0 12px;color:var(--accent)}
+  p{margin:8px 0}
+  .back{display:inline-block;color:var(--sub);font-size:13px;text-decoration:none;margin-bottom:16px}
+  .back:hover{color:var(--accent)}
+  .hero{border:1px solid rgba(127,214,162,.45);background:rgba(127,214,162,.08);border-radius:14px;padding:18px 22px;margin-bottom:18px}
+  .hero h2{color:var(--ok);margin-top:0}
+  .step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:0}
+  .num{flex:0 0 30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--accent);color:#241009;font-weight:800}
+  .step b{color:var(--txt)}
+  code{background:#151013;padding:2px 7px;border-radius:5px;font-size:13px;color:#ffc38c;user-select:all}
+  .warn{border-left:3px solid var(--warn);background:rgba(255,207,112,.07);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0}
+  .warn b{color:var(--warn)}
+  .bad{border-left:3px solid var(--bad);background:rgba(255,143,133,.07);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0}
+  .bad b{color:var(--bad)}
+  .btn{display:inline-block;background:var(--accent);color:#241009;border:0;border-radius:9px;padding:11px 22px;font-weight:700;font-size:14.5px;text-decoration:none;cursor:pointer;margin-top:8px}
+  .btn:hover{filter:brightness(1.08)}
+  .ghost{display:inline-block;border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:10px 18px;font-size:14px;text-decoration:none;margin-top:8px}
+  .muted{color:var(--sub);font-size:13px}
+  .foot{color:var(--sub);font-size:13px;text-align:center;margin-top:24px;line-height:1.9}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{color:var(--warn);background:#1b161a}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="channels.html">← 返回频道首页</a>
+
+  <h1>PChongguo · 全集模式</h1>
+  <p class="lead">让 PChongguo 真正能在电脑上把一部剧<b>从头看到尾</b>，而不是只看官网网页版开放的前 5 集。</p>
+
+  <div class="hero">
+    <h2>先说清楚它是怎么做到的</h2>
+    <p>红果官网网页版<b>只是试看</b>：我们实测过，服务端对第 6 集及以后直接拒绝发放播放地址（<code>403 public_fallback_unavailable</code>），改前端、换 cookie 都绕不过。</p>
+    <p>而手机上红果 App 里全剧本来就是免费的。有一支开源发布的<b>第三方桌面客户端</b>，它自己注册虚拟设备、直接调 App 端接口并解密视频流，所以能在 Windows 上看全 999 集。</p>
+    <p><b>全集模式＝把这支免费引擎作为可选组件接到 PChongguo 里</b>。入口、频道页、推广码、收益说明仍然全部是 PChongguo 自己的。</p>
+  </div>
+
+  <div class="card">
+    <h2>两步开启（只需要做一次安装）</h2>
+    <div class="step"><span class="num">1</span><div>
+      <b>安装引擎</b>：打开 PChongguo 文件夹，双击 <code>INSTALL-ENGINE.bat</code>。<br>
+      <span class="muted">它会从上游作者的 GitHub Release 下载官方压缩包并解压到本目录下的 <code>engine\</code> 文件夹。全程只写 PChongguo 自己的目录，不改系统设置。</span>
+    </div></div>
+    <div class="step"><span class="num">2</span><div>
+      <b>启动全集模式</b>：双击 <code>START-FULLMODE.bat</code>，或桌面上的 <code>PChongguo-全集</code> 图标（若已生成）。<br>
+      <span class="muted">第一次启动引擎会联网注册设备，请耐心等几秒。之后每次直接双击即可。</span>
+    </div></div>
+    <div class="step"><span class="num">3</span><div>
+      <b>回到 PChongguo</b>：追剧窗口照常用，推广码与收益说明仍在 <a class="ghost" style="padding:2px 10px;margin:0" href="fullwatch.html">免费看全集引导页</a>。
+    </div></div>
+    <p class="muted" style="margin-top:14px">想换频道／看两个码的区别：<a class="ghost" style="padding:2px 10px;margin:0" href="channels.html">频道首页</a>　·　<a class="ghost" style="padding:2px 10px;margin:0" href="fullwatch.html">看全集引导页</a></p>
+  </div>
+
+  <div class="card">
+    <h2>来源、安全与「会不会又帮别人赚钱」</h2>
+    <table>
+      <tr><th>项目</th><th>说明</th></tr>
+      <tr><td>引擎来源</td><td>第三方免费软件 <code>yangbin1322/hongguo-player</code>（GitHub 公开发布的 Windows 版）。<b>不是红果官方产品</b>。</td></tr>
+      <tr><td>是否打包进 PChongguo</td><td><b>没有。</b>我们的 GitHub Release 里只有几十 KB 的网页和脚本，不含任何第三方 exe；引擎由你自己点安装、从上游官方 Release 下载到本机。</td></tr>
+      <tr><td>会不会给别人带量</td><td><b>不会。</b>我们核对过该程序二进制，里面没有任何 <code>invite_code</code> / <code>kol_uid</code> / <code>appId</code> 推广参数，作者也声明完全免费无广告。打开它不会产生别人的拉新归因。<br><span class="muted">补充：引擎侧栏有一个「打赏作者」按钮，那是<b>自愿打赏</b>，不是自动归因、不看剧也扣不到你任何东西；不点即可。</span></td></tr>
+      <tr><td>我自己的收益</td><td>仍然只走 <code>fullwatch.html</code> 里你自己那张带播放按钮 logo 的推广码。看全集与拿佣金是两件事，别扫官网锁集弹窗里那张纯黑白码。</td></tr>
+      <tr><td>杀毒软件报毒</td><td>引擎是<b>未签名</b>程序，火绒 / Defender 可能误删。是否恢复、是否加白名单由你自己决定，PChongguo 不会去改安全软件设置。</td></tr>
+      <tr><td>会不会突然看不了</td><td>有可能。上游作者自己也在 README 里写「红果的接口经常调整，旧版本可能突然就播不了」。遇到时重新跑一次 <code>INSTALL-ENGINE.bat</code> 或等上游更新。</td></tr>
+    </table>
+  </div>
+
+  <div class="warn">
+    <p><b>两种「看全集」别混在一起</b></p>
+    <p>· <b>全集模式</b>：解决「电脑上把剧看完」，靠第三方 App 端客户端，和收益无关。</p>
+    <p>· <b>推广收益</b>：只认「新设备 + 新手机号 + 应用商店装官方 App + App 内绑定你的推广码 + App 内看剧」。电脑上看多久、装多少次播放器都不计入结算。</p>
+  </div>
+
+  <div class="bad">
+    <p><b>红线（PChongguo 一律不做）</b></p>
+    <p>不破解、不篡改红果官网页面，不替换官网锁集弹窗里的动态二维码，不伪造登录态，不分发任何官方剧集文件。引擎只作为本机可选组件由用户自行安装。</p>
+    <p>抖音公开视频、评论、私信、主页里不要放二维码、GitHub 链接、外链或「发给 AI 就能装」的暗语；安装口令只适合放 GitHub / 私下发。</p>
+  </div>
+
+  <p class="foot">
+    本页是纯本地文件，不联网、不上传任何信息。<br>
+    短剧内容、播放规则与结算规则归红果短剧官方所有；PChongguo 不修改、不绕过、不分发任何官方内容。<br>
+    第三方引擎为独立软件，其可用性与安全性由用户自行判断；本页说明不构成推荐或担保。
+  </p>
+</div>
+</body>
+</html>

@@ -4,4 +4,7 @@ dist/
 .DS_Store
 pc/Profile/
 pc/*.lnk
+# v4: optional third-party engine is downloaded by the user, never committed or bundled
+pc/engine/
+pc/engine-download.zip
 hogguo.png
