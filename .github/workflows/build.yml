@@ -44,6 +44,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/AIHongguoPromo-win32-x64/AIHongguoPromo.exe
+          files: dist/PCHongguo-win32-x64/PCHongguo.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
