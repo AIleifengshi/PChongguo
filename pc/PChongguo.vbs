@@ -2,7 +2,7 @@ Option Explicit
 ' PChongguo - standalone PC window for short dramas.
 ' Uses the installed Microsoft Edge in app mode with a DESKTOP user agent.
 
-Dim fso, sh, appDir, profile, edge, url, cmd, lnkPath, lnk
+Dim fso, sh, appDir, profile, edge, url, cmd, lnkPath, lnk, fullLnk, lnk2
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set sh  = CreateObject("WScript.Shell")
 
@@ -21,6 +21,19 @@ If Not fso.FileExists(lnkPath) Then
     lnk.IconLocation = appDir & "\PChongguo.ico,0"
     lnk.Description = "PChongguo - short dramas on PC"
     lnk.Save
+End If
+
+' One-time Desktop shortcut for the local 'watch full series' guide.
+fullLnk = sh.SpecialFolders("Desktop") & "\PChongguo-Full.lnk"
+If fso.FileExists(appDir & "\fullwatch.html") Then
+    If Not fso.FileExists(fullLnk) Then
+        Set lnk2 = sh.CreateShortcut(fullLnk)
+        lnk2.TargetPath = appDir & "\fullwatch.html"
+        lnk2.WorkingDirectory = appDir
+        lnk2.IconLocation = appDir & "\PChongguo.ico,0"
+        lnk2.Description = "PChongguo - watch full series with my own QR"
+        lnk2.Save
+    End If
 End If
 On Error Goto 0
 

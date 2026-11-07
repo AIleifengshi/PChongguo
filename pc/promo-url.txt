@@ -1,0 +1,3 @@
+﻿把下面这一行换成你自己的官方推广链接，然后运行 tools/build_qr.py 重新生成二维码。
+
+https://kol.fanqieopen.com/landing/ground-promotion?promotion_code_id=7692035465872293950&kol_uid=1800355726519292&invite_uid=2187383794308704

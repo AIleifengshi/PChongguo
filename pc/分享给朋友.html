@@ -7,7 +7,7 @@
 <style>
   :root{--bg:#171316;--card:#221c20;--line:#3a2f33;--txt:#f3ece9;--sub:#b5a6a9;--accent:#ff8a3c}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.75 "Microsoft YaHei",system-ui,sans-serif;padding:32px 18px}
+  body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.75 "Microsoft YaHei",system-ui,sans-serif;padding:32px 18px 60px}
   .wrap{max-width:680px;margin:0 auto}
   h1{font-size:24px;margin:0 0 6px}
   .lead{color:var(--sub);margin:0 0 26px}
@@ -16,15 +16,21 @@
   .tpl{background:#151013;border:1px solid var(--line);border-radius:10px;padding:14px;white-space:pre-wrap;word-break:break-all;font-size:14px;color:#e8dcd8;margin:10px 0}
   button{background:var(--accent);color:#241009;border:0;border-radius:9px;padding:10px 20px;font-weight:700;font-size:14px;cursor:pointer}
   button:hover{filter:brightness(1.08)}
-  .links a{color:var(--accent);word-break:break-all}
+  .mini{background:transparent;border:1px solid var(--line);color:var(--txt);padding:5px 12px;font-size:12px;font-weight:400}
+  .links a{color:var(--accent);word-break:break-all;font-size:13px}
   .note{font-size:13px;color:var(--sub);margin-top:12px}
-  code{background:#151013;padding:2px 6px;border-radius:5px;font-size:13px;color:#ffc38c}
+  code{background:#151013;padding:2px 6px;border-radius:5px;font-size:13px;color:#ffc38c;word-break:break-all}
+  .qr{display:block;width:170px;height:170px;background:#fff;border:5px solid #fff;border-radius:10px;margin:0 auto 10px}
+  .center{text-align:center}
+  .warn{border-left:3px solid #ffcf70;background:rgba(255,207,112,.06);padding:10px 14px;border-radius:0 8px 8px 0;font-size:13.5px;color:#ffcf70}
+  details{font-size:13px;color:var(--sub);margin-top:10px}
+  summary{cursor:pointer;color:var(--sub)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>把好剧安利给朋友</h1>
-  <p class="lead">觉得哪部剧好看，发给朋友一起追。下面的文案和链接可以直接复制。</p>
+  <p class="lead">用你自己的推广码，把朋友带进官方 App。文案、链接、二维码都在下面，可以直接复制。</p>
 
   <div class="card">
     <h2>推荐文案</h2>
@@ -32,34 +38,43 @@
 这部真的上头，推荐你也看看 👇
 #红果短剧 #追剧日常</div>
     <button onclick="cp('tpl',this)">复制文案</button>
-    <p class="note">发抖音、朋友圈、微信群都可以，链接一起带上更方便。</p>
+    <p class="note">文案本身不含链接；发抖音、朋友圈、微信群时，请按平台规则决定是否附带推广内容。</p>
   </div>
 
   <div class="card">
-    <h2>手机端打开链接</h2>
-    <div class="links" id="links"></div>
-    <p class="note">朋友在手机上点开即可观看；自己电脑上追剧请直接双击桌面 PChongguo。</p>
+    <h2>你自己的推广码</h2>
+    <div class="center">
+      <img class="qr" src="mycode.png" alt="我的推广码">
+      <button class="mini" onclick="cpText(MINE,this)">复制推广链接</button>
+    </div>
+    <p class="note">朋友用手机扫这个码，按页面提示从应用商店安装官方 App 并在 App 内完成绑定，才算完成官方归因口径。<code id="url"></code></p>
+    <p class="note">电脑上遇到锁集、想继续看全集，请双击本文件夹的 <code>fullwatch.html</code>（或桌面 <code>PChongguo-Full</code>）。</p>
   </div>
 
   <div class="card">
-    <h2>小提示</h2>
-    <p class="note" style="margin:0">电脑端追剧走的是官方网页版，不经过任何链接；
-这里的两条链接只建议发给朋友使用。</p>
+    <h2>合规提醒</h2>
+    <p class="warn">不要自己扫自己的码：同设备 / 同手机号 / 同网络自点无效，可能被平台判异常、清零封号。收益只来自其他真实新用户，是否结算以官方后台为准。</p>
+    <p class="note">抖音公开视频、评论、私信、主页不要出现二维码、网址、GitHub 链接或「发给 AI 就装」这类暗语，属于站外引流。本页是本地文件，只在你自己电脑上打开。</p>
+    <details>
+      <summary>历史链接（归属未确认，已不作主推）</summary>
+      <div class="links" id="links"></div>
+      <p class="note">这两条是早期版本留下的链接，尚不能确认是否属于你本人。为避免误给他人带量，v3 起主推上面你自己的番茄达人中心推广码。确认归属后可自行决定是否继续使用。</p>
+    </details>
   </div>
 </div>
 
 <script>
-// 观众视角的分享链接：仅用于推荐给他人，不进入电脑端追剧主流程
-var LINKS = {
+// 你自己的官方推广码（来源：PVhongguo.png 解码），v3 起作为唯一主推。
+var MINE = 'https://kol.fanqieopen.com/landing/ground-promotion?promotion_code_id=7692035465872293950&kol_uid=1800355726519292&invite_uid=2187383794308704';
+// 历史链接：保留备查，不进入主推流程。
+var LEGACY = {
   ios: 'https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_ios',
   and: 'https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_android'
 };
-var box = document.getElementById('links');
-box.innerHTML =
-  '<p style="margin:0 0 4px"><b>iOS：</b> <a href="'+LINKS.ios+'" target="_blank" rel="noopener">'+LINKS.ios+'</a> ' +
-  '<button style="padding:5px 12px;font-size:12px;margin-left:6px" onclick="cpText(LINKS.ios,this)">复制</button></p>' +
-  '<p style="margin:10px 0 0"><b>安卓：</b> <a href="'+LINKS.and+'" target="_blank" rel="noopener">'+LINKS.and+'</a> ' +
-  '<button style="padding:5px 12px;font-size:12px;margin-left:6px" onclick="cpText(LINKS.and,this)">复制</button></p>';
+document.getElementById('url').textContent = MINE;
+document.getElementById('links').innerHTML =
+  '<p style="margin:0 0 4px"><b>iOS：</b> <a href="'+LEGACY.ios+'" target="_blank" rel="noopener">'+LEGACY.ios+'</a></p>' +
+  '<p style="margin:10px 0 0"><b>安卓：</b> <a href="'+LEGACY.and+'" target="_blank" rel="noopener">'+LEGACY.and+'</a></p>';
 
 function fallback(t){
   var ta=document.createElement('textarea'); ta.value=t;

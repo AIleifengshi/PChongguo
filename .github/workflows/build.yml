@@ -23,11 +23,17 @@ jobs:
             'pc/PChongguo.ico',
             'pc/SETUP.bat',
             'pc/使用说明.txt',
-            'pc/分享给朋友.html'
+            'pc/分享给朋友.html',
+            'pc/fullwatch.html',
+            'pc/mycode.png',
+            'pc/promo-url.txt'
           )
           foreach ($f in $required) {
             if (-not (Test-Path $f)) { throw "Missing payload file: $f" }
           }
+          # Guard: the promo QR must be a real PNG and non-trivial in size.
+          $qr = Get-Item 'pc/mycode.png'
+          if ($qr.Length -lt 2000) { throw "mycode.png looks invalid" }
           Get-ChildItem pc | Select-Object Name, Length
 
       - name: Package as ZIP
@@ -44,30 +50,36 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          name: "PChongguo PC 追剧版"
+          name: "PChongguo v3 · 看全集引导版"
           body: |
-            ## PChongguo · 电脑大屏追红果短剧
+            ## PChongguo v3 · 电脑大屏追红果短剧 + 看全集引导
 
-            双击即用的独立追剧窗口，无需安装、无需登录即可观看。
+            双击即用的独立追剧窗口，并内置**你自己的推广码**与「看全集」引导页。
 
             ### 安装（约 10 秒）
             1. 下载 `PChongguo-PC.zip`
             2. 解压到桌面或 D 盘等普通目录（不要放 `C:\Program Files`）
-            3. 双击 `PChongguo.vbs` → 直接看到剧集封面墙
-            4. 点一部剧 → 点「播放正片」→ 开始播放
+            3. 双击 `PChongguo.vbs` → 剧集封面墙 → 点一部剧 → 点「播放正片」
+            4. 首次运行会在桌面生成两个图标：`PChongguo`（追剧）、`PChongguo-Full`（看全集引导）
 
-            首次运行会自动在桌面生成 `PChongguo` 快捷方式。
-            若双击 .vbs 无反应，可改用 `SETUP.bat` 生成快捷方式。
+            若双击 .vbs 无反应，可改用 `SETUP.bat`；引导页也可直接双击 `fullwatch.html`。
 
-            ### 本次修复
-            - 旧版把推广落地页当播放地址且使用手机 UA，官网强制拦截成「请下载 App」，导致白屏/看不到剧
-            - 新版直接打开红果官网网页版并使用桌面 UA，官网正常给出播放器，实测可播放（H.264，无需 HEVC 扩展）
-            - 移除 163MB Electron 套壳；改用系统自带 Edge 独立窗口，整个程序仅几十 KB
-            - 播放时若弹出「登录发现更多精彩内容」，点右上角 × 关闭即可，无需登录
+            ### v3 更新
+            - 新增 `fullwatch.html`：讲清网页版为何第 6 集起锁、以及电脑上继续看全集的两条合规路径
+            - 新增 `mycode.png` / `promo-url.txt`：你自己的官方推广码（H 级纠错，带 logo 可扫）
+            - `分享给朋友.html` 改为主推自有码；归属未确认的历史链接降级标注，避免误给他人带量
+            - 使用说明 / README 补充收益口径、风控与抖音合规红线
+
+            ### 必须知道的事实
+            - 官网网页版只是试看，网页端没有官方全集解锁入口，官方也没有 Windows 客户端
+            - 推广归因只在手机 App 内闭环，电脑网页播放与 GitHub 下载量不产生收益
+            - 电脑端看全集的合规路径：安卓模拟器内运行官方 App（风控可能不结算），或手机 App 投屏到电脑大屏（最稳）
+            - 官网锁集弹窗里的码是动态唤端链接、不含推广参数，本程序不替换、不篡改、不破解锁集
+            - 不要自己扫自己的码；抖音公开内容不要放二维码 / 网址 / 外链 / 暗语
 
             ### 环境要求
             Windows 10/11 + Microsoft Edge（系统自带）。
-            短剧内容与播放规则归红果短剧官方所有，本程序仅是电脑端观看入口。
+            短剧内容、播放规则与推广结算规则归红果短剧官方所有，本程序仅是电脑端观看入口。
           files: PChongguo-PC.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

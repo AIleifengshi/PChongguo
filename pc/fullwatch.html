@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>看全集 · PChongguo</title>
+<style>
+  :root{--bg:#171316;--card:#221c20;--line:#3a2f33;--txt:#f3ece9;--sub:#b5a6a9;--accent:#ff8a3c;--warn:#ffcf70;--ok:#7fd6a2}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.8 "Microsoft YaHei",system-ui,sans-serif;padding:34px 18px 60px}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:26px;margin:0 0 8px}
+  .lead{color:var(--sub);margin:0 0 26px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-bottom:16px}
+  h2{font-size:17px;margin:0 0 12px;color:var(--accent)}
+  h3{font-size:15px;margin:18px 0 6px;color:var(--txt)}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0 8px;padding-left:22px}
+  li{margin:5px 0}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  .tag-rec{background:rgba(127,214,162,.16);color:var(--ok);border:1px solid rgba(127,214,162,.45)}
+  .tag-safe{background:rgba(255,207,112,.14);color:var(--warn);border:1px solid rgba(255,207,112,.4)}
+  .facts{border-left:3px solid var(--warn);background:rgba(255,207,112,.06);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0}
+  .facts p{margin:5px 0}
+  .concl{background:rgba(255,138,60,.09);border:1px solid rgba(255,138,60,.35);border-radius:10px;padding:12px 16px;margin-top:14px}
+  .qrbox{text-align:center;margin:6px 0 2px}
+  .qrbox img{width:230px;height:230px;background:#fff;border-radius:12px;border:6px solid #fff;display:block;margin:0 auto 10px}
+  .qrbox small{color:var(--sub)}
+  .step{display:flex;gap:12px;margin:10px 0}
+  .num{flex:0 0 26px;height:26px;border-radius:50%;background:var(--accent);color:#241009;font-weight:700;text-align:center;line-height:26px;font-size:14px}
+  .step div{flex:1}
+  button{background:var(--accent);color:#241009;border:0;border-radius:9px;padding:9px 18px;font-weight:700;font-size:14px;cursor:pointer}
+  button:hover{filter:brightness(1.08)}
+  .path{border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:14px 0;background:#1b161a}
+  .risk{color:var(--warn);font-size:13.5px}
+  .muted{color:var(--sub);font-size:13.5px}
+  code{background:#151013;padding:2px 6px;border-radius:5px;font-size:13px;color:#ffc38c;word-break:break-all}
+  a{color:var(--accent)}
+  .redline li{color:#ffb9ae}
+  .foot{color:var(--sub);font-size:13px;text-align:center;margin-top:26px;line-height:1.9}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>看到「下载 App 免费看全集」了？</h1>
+  <p class="lead">这不是程序坏了，也不是会员墙，是红果官方的播放规则。下面是在电脑上继续看全集、同时让推广归因成立的完整路径 —— 请按顺序看，尤其是第一段实话。</p>
+
+  <!-- 0. 实话 -->
+  <div class="card">
+    <h2>0 · 先说实话：为什么不能只靠电脑网页版</h2>
+    <div class="facts">
+      <p>· 红果官网网页版只开放前几集试看，<b>第 6 集起上锁</b>，弹「扫码进入 App 端，免费看全集」。</p>
+      <p>· 网页端<b>没有</b>「看广告解锁 / 登录解锁 / 会员解锁」入口（已逐项实测）；官方也<b>没有 Windows 客户端</b>。</p>
+      <p>· 推广收益的结算<b>只在手机 App 内</b>闭环：新设备 + 新手机号 + 应用商店下载官方 App + App 内扫码绑定 + App 内看剧。电脑网页播放、GitHub 下载量、播放器装机量都<b>不产生</b>归因收益。</p>
+    </div>
+    <div class="concl">
+      <b>结论：</b>在「纯电脑网页版」这一个载体上，「全集免费看」和「扫码有收益」不可能同时成立，扫完还能回到电脑继续看更不成立。要三者同时成立，唯一合规的办法是 —— <b>让官方 App 跑在电脑上</b>，或者让手机 App 的画面投到电脑大屏。
+    </div>
+    <p class="muted">任何声称「在网页里扫个码就能在电脑网页版解锁全集并结算」的做法，要么不产生收益，要么要绕过官方锁集（篡改页面 / 抓接口），本程序不做、也不建议做。</p>
+  </div>
+
+  <!-- 1. 你的码 -->
+  <div class="card">
+    <h2>1 · 用你自己的码完成归因（这一步才产生收益）</h2>
+    <div class="qrbox">
+      <img src="mycode.png" alt="我的推广码">
+      <small>这是本程序自带的、属于你自己的官方推广码</small>
+    </div>
+    <div class="step"><div class="num">1</div><div>用<b>手机</b>扫上面的码，进入你自己的番茄达人中心推广落地页。</div></div>
+    <div class="step"><div class="num">2</div><div>按页面提示，通过<b>应用商店</b>下载安装红果短剧官方 App，并在 <b>App 内</b>完成扫码 / 绑定。</div></div>
+    <div class="step"><div class="num">3</div><div>在 App 里看剧。只有走完这条链路，才符合官方的拉新归因口径。</div></div>
+    <p style="margin-top:14px"><button onclick="cp()">复制推广链接</button></p>
+    <p class="muted" id="url"></p>
+  </div>
+
+  <!-- 2. 电脑端继续看 -->
+  <div class="card">
+    <h2>2 · 扫完之后，怎么在电脑上继续看全集</h2>
+
+    <div class="path">
+      <h3>路径 A：Windows 安卓模拟器 · 真·电脑端闭环 <span class="tag tag-rec">推荐</span></h3>
+      <ol>
+        <li>在电脑上安装一个 Windows 安卓模拟器（任意主流模拟器均可，用它自带的应用商店）。</li>
+        <li>在模拟器的应用商店里搜索「红果短剧」并安装 —— 走商店下载，别从网页直接塞安装包。</li>
+        <li>打开 App，用 App 内的扫一扫，扫<b>本页第 1 步那张同一个码</b>完成绑定。</li>
+        <li>App 内即为<b>免费全集</b>，窗口可最大化 / 全屏，全程都在电脑上，不用再碰手机。</li>
+      </ol>
+      <p class="risk">⚠ 必须知道的风险：模拟器属于虚拟设备，平台风控有可能判定为「非真实新用户」而不给结算，收益不保证。「应用商店下载」这一条也建议严格走商店渠道。若你的核心目标是稳妥拿收益，用路径 B。</p>
+    </div>
+
+    <div class="path">
+      <h3>路径 B：手机 App + 投屏到大屏 <span class="tag tag-safe">风控最稳</span></h3>
+      <ol>
+        <li>手机扫上面的码 → 应用商店装官方 App → App 内绑定 → 手机上看全集（归因完全合规）。</li>
+        <li>把手机画面投到电脑显示器或电视：Windows 用 <code>Win + K</code> 无线投屏，或用数据线投屏工具。</li>
+        <li>大屏看全集，收益链路一条不缺。</li>
+      </ol>
+      <p class="muted">代价是「操作在手机、画面在电脑大屏」，不是纯电脑本地播放。但这是官方结算口径下最不容易被判异常的一条。</p>
+    </div>
+
+    <p class="muted">补充：同一手机号登录官网网页版，<b>不会</b>解锁网页端的锁集（已实测），所以「手机绑定后回网页版继续看」这条路走不通，别在这上面浪费时间。</p>
+  </div>
+
+  <!-- 3. 为什么不动官网那个码 -->
+  <div class="card">
+    <h2>3 · 为什么不把官网弹窗里的码直接换成你的</h2>
+    <p>官网锁集弹窗里的二维码是 <code>applink.novelquickapp.com</code> 的<b>动态唤端链接</b>，参数绑定当前剧集（<code>video_series_id</code> / <code>vid</code> / <code>web_id</code> / <code>module_name=lock_episode</code>），每部剧每一集都不同，而且<b>不含任何推广参数</b>。</p>
+    <p>把它硬换成你的推广码：一是换了之后根本唤不起 App、页面功能失效；二是属于篡改官方页面、绕过官方锁集引导，有明确的合规与侵权风险。</p>
+    <p><b>所以做法是：把你的码放进你自己的程序里（就是本页），而不是塞进官网页面。</b>用户看到锁集提示时，切到本页照着做即可。</p>
+  </div>
+
+  <!-- 4. 红线 -->
+  <div class="card">
+    <h2>4 · 红线（务必遵守，否则收益清零甚至封号）</h2>
+    <ul class="redline">
+      <li><b>不要自己扫自己的码</b>：同设备、同手机号、同网络自点自看无效，且可能被平台判异常、清零封号。收益只来自其他真实新用户。</li>
+      <li><b>抖音公开内容不要放码 / 网址 / GitHub 链接</b>：视频、评论、私信、主页出现二维码、外链、「发给 AI 就装」「私信我领」等，均属站外引流，会被限流或判违规。本页是本地说明页，只在你自己电脑上看。</li>
+      <li><b>不要承诺「必得收益」</b>：是否结算以官方后台为准，模拟器路径尤其不保证。</li>
+      <li><b>不破解网页锁、不改官网页面、不抓接口、不下载或分发任何剧集内容。</b></li>
+    </ul>
+  </div>
+
+  <p class="foot">
+    本页是一个纯本地说明页，不联网、不上传任何信息；二维码图片 <code>mycode.png</code> 与本文件放在同一目录。<br>
+    短剧内容、播放规则、账号体系、推广结算规则均归红果短剧 / 番茄达人中心官方所有。<br>
+    PChongguo 只是一个电脑端观看入口，不修改、不绕过、不分发任何官方内容。
+  </p>
+</div>
+
+<script>
+var PROMO = 'https://kol.fanqieopen.com/landing/ground-promotion?promotion_code_id=7692035465872293950&kol_uid=1800355726519292&invite_uid=2187383794308704';
+document.getElementById('url').textContent = PROMO;
+function fallback(t){
+  var ta=document.createElement('textarea'); ta.value=t;
+  ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+function cp(){
+  var b=document.querySelector('button');
+  var done=function(){var o=b.textContent;b.textContent='已复制';setTimeout(function(){b.textContent=o;},1400);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(PROMO).then(done,function(){fallback(PROMO);done();});
+  }else{fallback(PROMO);done();}
+}
+</script>
+</body>
+</html>
