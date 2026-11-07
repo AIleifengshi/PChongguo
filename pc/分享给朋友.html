@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>把好剧安利给朋友 · PChongguo</title>
+<style>
+  :root{--bg:#171316;--card:#221c20;--line:#3a2f33;--txt:#f3ece9;--sub:#b5a6a9;--accent:#ff8a3c}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.75 "Microsoft YaHei",system-ui,sans-serif;padding:32px 18px}
+  .wrap{max-width:680px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 6px}
+  .lead{color:var(--sub);margin:0 0 26px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
+  h2{font-size:16px;margin:0 0 12px;color:var(--accent)}
+  .tpl{background:#151013;border:1px solid var(--line);border-radius:10px;padding:14px;white-space:pre-wrap;word-break:break-all;font-size:14px;color:#e8dcd8;margin:10px 0}
+  button{background:var(--accent);color:#241009;border:0;border-radius:9px;padding:10px 20px;font-weight:700;font-size:14px;cursor:pointer}
+  button:hover{filter:brightness(1.08)}
+  .links a{color:var(--accent);word-break:break-all}
+  .note{font-size:13px;color:var(--sub);margin-top:12px}
+  code{background:#151013;padding:2px 6px;border-radius:5px;font-size:13px;color:#ffc38c}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>把好剧安利给朋友</h1>
+  <p class="lead">觉得哪部剧好看，发给朋友一起追。下面的文案和链接可以直接复制。</p>
+
+  <div class="card">
+    <h2>推荐文案</h2>
+    <div class="tpl" id="tpl">最近在电脑大屏追短剧，一口气刷完好爽！
+这部真的上头，推荐你也看看 👇
+#红果短剧 #追剧日常</div>
+    <button onclick="cp('tpl',this)">复制文案</button>
+    <p class="note">发抖音、朋友圈、微信群都可以，链接一起带上更方便。</p>
+  </div>
+
+  <div class="card">
+    <h2>手机端打开链接</h2>
+    <div class="links" id="links"></div>
+    <p class="note">朋友在手机上点开即可观看；自己电脑上追剧请直接双击桌面 PChongguo。</p>
+  </div>
+
+  <div class="card">
+    <h2>小提示</h2>
+    <p class="note" style="margin:0">电脑端追剧走的是官方网页版，不经过任何链接；
+这里的两条链接只建议发给朋友使用。</p>
+  </div>
+</div>
+
+<script>
+// 观众视角的分享链接：仅用于推荐给他人，不进入电脑端追剧主流程
+var LINKS = {
+  ios: 'https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_ios',
+  and: 'https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_android'
+};
+var box = document.getElementById('links');
+box.innerHTML =
+  '<p style="margin:0 0 4px"><b>iOS：</b> <a href="'+LINKS.ios+'" target="_blank" rel="noopener">'+LINKS.ios+'</a> ' +
+  '<button style="padding:5px 12px;font-size:12px;margin-left:6px" onclick="cpText(LINKS.ios,this)">复制</button></p>' +
+  '<p style="margin:10px 0 0"><b>安卓：</b> <a href="'+LINKS.and+'" target="_blank" rel="noopener">'+LINKS.and+'</a> ' +
+  '<button style="padding:5px 12px;font-size:12px;margin-left:6px" onclick="cpText(LINKS.and,this)">复制</button></p>';
+
+function fallback(t){
+  var ta=document.createElement('textarea'); ta.value=t;
+  ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+function cpText(t,btn){
+  var done=function(){ if(btn){var o=btn.textContent;btn.textContent='已复制';setTimeout(function(){btn.textContent=o;},1400);} };
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fallback(t);done();});}
+  else{fallback(t);done();}
+}
+function cp(id,btn){ cpText(document.getElementById(id).textContent, btn); }
+</script>
+</body>
+</html>
