@@ -209,23 +209,30 @@
 
 <script>
   const $ = s => document.querySelector(s);
+  // 容错存储：data: 源（程序内嵌网页）下 localStorage 可能抛异常，需兜底不崩溃
+  let _ls=null; try{ _ls=window.localStorage; }catch(e){ _ls=null; }
+  const store={
+    get(k){ try{ return _ls?_ls.getItem(k):null; }catch(e){ return null; } },
+    set(k,v){ try{ if(_ls)_ls.setItem(k,v); }catch(e){} },
+    remove(k){ try{ if(_ls)_ls.removeItem(k); }catch(e){} }
+  };
   const linkIosKey='jtg_link_ios', linkAndKey='jtg_link_and', keyKey='jtg_keyword', earnKey='jtg_earn';
   const DEFAULT_IOS='https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_ios';
   const DEFAULT_AND='https://tg.bd.cn/#/pages/index/components/detail?appId=1190&invite_code=0224811&qd=self_reg_android';
 
   function load(){
-    if(!localStorage.getItem(linkIosKey)) localStorage.setItem(linkIosKey,DEFAULT_IOS);
-    if(!localStorage.getItem(linkAndKey)) localStorage.setItem(linkAndKey,DEFAULT_AND);
-    $('#linkIos').value=localStorage.getItem(linkIosKey)||'';
-    $('#linkAnd').value=localStorage.getItem(linkAndKey)||'';
-    $('#keyInput').value=localStorage.getItem(keyKey)||'';
+    if(!store.get(linkIosKey)) store.set(linkIosKey,DEFAULT_IOS);
+    if(!store.get(linkAndKey)) store.set(linkAndKey,DEFAULT_AND);
+    $('#linkIos').value=store.get(linkIosKey)||'';
+    $('#linkAnd').value=store.get(linkAndKey)||'';
+    $('#keyInput').value=store.get(keyKey)||'';
     $('#eDate').value=new Date().toISOString().slice(0,10);
     render(); renderEarn();
   }
   function save(){
-    localStorage.setItem(linkIosKey,$('#linkIos').value.trim());
-    localStorage.setItem(linkAndKey,$('#linkAnd').value.trim());
-    localStorage.setItem(keyKey,$('#keyInput').value.trim());
+    store.set(linkIosKey,$('#linkIos').value.trim());
+    store.set(linkAndKey,$('#linkAnd').value.trim());
+    store.set(keyKey,$('#keyInput').value.trim());
     $('#saveOk').classList.add('show'); setTimeout(()=>$('#saveOk').classList.remove('show'),1500);
     render(); renderEarn();
   }
@@ -251,7 +258,7 @@
     else e.innerHTML=`<span class="note">先在「我的配置」填写打开链接</span>`;
   }
   function render(){
-    const ios=localStorage.getItem(linkIosKey)||'', and=localStorage.getItem(linkAndKey)||'', key=localStorage.getItem(keyKey)||'';
+    const ios=store.get(linkIosKey)||'', and=store.get(linkAndKey)||'', key=store.get(keyKey)||'';
     setCta('#ctaIos',ios); setCta('#ctaAnd',and);
     $('#attrIos').innerHTML=attrHTML(ios); $('#attrAnd').innerHTML=attrHTML(and);
     qr('#qrIos',ios); qr('#qrAnd',and);
@@ -262,7 +269,7 @@
     $('#tpl2').textContent = `想看全集点这里👇 电脑大屏免费看：\n${ios}\n#红果短剧 #短剧推荐`;
   }
   function renderEarn(){
-    let list=[]; try{ list=JSON.parse(localStorage.getItem(earnKey)||'[]'); }catch(e){}
+    let list=[]; try{ list=JSON.parse(store.get(earnKey)||'[]'); }catch(e){}
     const box=$('#earnList'); box.innerHTML='';
     list.slice().reverse().forEach((it,idx)=>{
       const realIdx=list.length-1-idx;
@@ -271,25 +278,31 @@
       box.appendChild(row);
     });
     $('#earnTotal').textContent='累计记录：'+list.length+' 条';
-    box.querySelectorAll('.x').forEach(x=>x.onclick=()=>{ const i=+x.dataset.i; let l=JSON.parse(localStorage.getItem(earnKey)||'[]'); l.splice(i,1); localStorage.setItem(earnKey,JSON.stringify(l)); renderEarn(); });
+    box.querySelectorAll('.x').forEach(x=>x.onclick=()=>{ const i=+x.dataset.i; let l=JSON.parse(store.get(earnKey)||'[]'); l.splice(i,1); store.set(earnKey,JSON.stringify(l)); renderEarn(); });
   }
   function addEarn(){
     const date=$('#eDate').value, content=$('#eContent').value.trim(), note=$('#eNote').value.trim();
     if(!content){ alert('请填写剧集 / 内容'); return; }
-    let l=[]; try{ l=JSON.parse(localStorage.getItem(earnKey)||'[]'); }catch(e){}
+    let l=[]; try{ l=JSON.parse(store.get(earnKey)||'[]'); }catch(e){}
     l.push({date:date||new Date().toISOString().slice(0,10), content:content, note:note});
-    localStorage.setItem(earnKey,JSON.stringify(l));
+    store.set(earnKey,JSON.stringify(l));
     $('#eContent').value=''; $('#eNote').value='';
     renderEarn();
   }
-  function copy(t){ if(!t){alert('请先在设置填写');return;} navigator.clipboard.writeText(t).then(()=>alert('已复制：'+t.slice(0,60)+(t.length>60?'…':''))); }
+  async function copy(t){
+    if(!t){ alert('请先在设置填写'); return; }
+    let ok=false;
+    try{ if(navigator.clipboard&&navigator.clipboard.writeText){ await navigator.clipboard.writeText(t); ok=true; } }catch(e){}
+    if(!ok){ try{ const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); ok=document.execCommand('copy'); ta.remove(); }catch(e){} }
+    alert((ok?'已复制：':'复制失败，请长按手动复制：')+t.slice(0,60)+(t.length>60?'…':''));
+  }
 
   $('#saveBtn').onclick=save;
   $('#addEarn').onclick=addEarn;
-  $('#clearEarn').onclick=()=>{ if(confirm('确定清空全部记录？')){ localStorage.removeItem(earnKey); renderEarn(); } };
-  $('#copyIos').onclick=()=>copy(localStorage.getItem(linkIosKey));
-  $('#copyAnd').onclick=()=>copy(localStorage.getItem(linkAndKey));
-  $('#copyKey').onclick=()=>copy(localStorage.getItem(keyKey));
+  $('#clearEarn').onclick=()=>{ if(confirm('确定清空全部记录？')){ store.remove(earnKey); renderEarn(); } };
+  $('#copyIos').onclick=()=>copy(store.get(linkIosKey));
+  $('#copyAnd').onclick=()=>copy(store.get(linkAndKey));
+  $('#copyKey').onclick=()=>copy(store.get(keyKey));
   $('#copyTpl1').onclick=()=>copy($('#tpl1').textContent);
   $('#copyTpl2').onclick=()=>copy($('#tpl2').textContent);
   document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
