@@ -1,3 +1,12 @@
-﻿把下面这一行换成你自己的官方推广链接，然后运行 tools/build_qr.py 重新生成二维码。
+﻿【重要 · 两个后台的分工】
+· 番茄达人中心 kol.fanqieopen.com ＝ 字节官方推广后台：领项目、申请关键词/别名、
+  下载素材、查推广数据。它不结算、不能提现。
+· 任推邦 ＝ 你的服务商：给登录邀请码，佣金结算与打款统一在任推邦后台。
+→ 所以下面的链接落在官方域名是正常的；但看收益、查结算、提现请去任推邦。
+
+【如果任推邦后台给你的地推码不是下面这条】
+把下面这行整行替换成任推邦给你的推广链接，再运行 tools/build_qr.py 重新生成 mycode.png。
+（改 tools/build_qr.py 里的 PROMO_URL 为同一条链接，保持一致。）
+生成后用解码工具确认 mycode.png 能解出这条链接，再同步到桌面 PChongguo 目录。
 
 https://kol.fanqieopen.com/landing/ground-promotion?promotion_code_id=7692035465872293950&kol_uid=1800355726519292&invite_uid=2187383794308704
